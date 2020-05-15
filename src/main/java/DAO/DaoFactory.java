@@ -29,8 +29,8 @@ public class DaoFactory implements AbstractDaoFactory{
   }
 
   @Override
-  public Dao<FormeGroupe> createGroupeDao() {
-      return new GroupeDao();
+  public Dao<GroupeForme> createGroupeDao() {
+      return new GroupeFormeDao();
   }
 
 }

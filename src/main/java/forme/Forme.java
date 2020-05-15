@@ -20,7 +20,7 @@ public abstract class Forme extends AbstractForme{
       return name;
   }
   
-  public String getGroupeid() {
+  public String getGroupeId() {
       return groupeId;
   }
   public String getType() {
