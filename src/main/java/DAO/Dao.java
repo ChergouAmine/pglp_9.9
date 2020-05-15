@@ -11,9 +11,8 @@ public abstract class Dao<T> {
   public abstract T create(T obj);
   public abstract T find(String id);
   public abstract T update(T obj);
-
   public abstract void delete(T obj);
-  public abstract ArrayList<T> getAllGroupeObject(String id);
+  public abstract ArrayList<T> getGroupeObject(String id);
 
   public void connect() {
 
