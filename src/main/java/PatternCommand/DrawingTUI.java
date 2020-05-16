@@ -505,7 +505,6 @@ public class DrawingTUI {
     FormeDelete command = (FormeDelete) this.commands.get("delete");
 
     List<Forme> listForme = new ArrayList<Forme>();
-    
     for(int i = 1; i < result.length;i++) {
       listForme.add(getFormeWithName(this.forme, result[i]));
       formeSupprimee = new ArrayList<Forme>(listForme);
@@ -531,7 +530,7 @@ public class DrawingTUI {
   }
 
 
-  public void deleteformeDeleted() {
+  public void deleteformeSupprimee() {
     this.formeSupprimee.clear();
 
   }
