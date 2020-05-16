@@ -27,7 +27,7 @@ public abstract class Forme extends AbstractForme{
       return type;
   }
   
-  public void setGroupeid(String g) {
+  public void setGroupeId(String g) {
       groupeId = g;
       
   }

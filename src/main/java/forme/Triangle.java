@@ -6,7 +6,7 @@ public class Triangle extends Forme {
   private Point b;
   private Point c;
   
-  public Triangle(String n, String g, Point a, Point b, Point c) {
+  public Triangle(String n, Point a, Point b, Point c, String g) {
       super(n, g, "Triangle");
       this.a = new Point(a.getX(), a.getY());
       this.b = new Point(b.getX(), b.getY());

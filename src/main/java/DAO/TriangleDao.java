@@ -71,7 +71,7 @@ public class TriangleDao extends Dao<Triangle> {
         Point c = new Point(result.getInt("cx"), result.getInt("cy"));
         String groupeId = result.getString("groupeId");
         
-        t = new Triangle(nom, groupeId, a, b, c);
+        t = new Triangle(nom,a,b,c,groupeId);
         select.close();
       }
     } catch (SQLException e) {
@@ -165,7 +165,7 @@ public class TriangleDao extends Dao<Triangle> {
           Point b = new Point(result.getInt("bx"), result.getInt("by"));
           Point c = new Point(result.getInt("cx"), result.getInt("cy"));
           
-          Triangle t = new Triangle(nom, id, a, b, c);
+          Triangle t = new Triangle(nom,a,b,c,id);
           listTriangle.add(t);
       }
     } catch (SQLException e) {
