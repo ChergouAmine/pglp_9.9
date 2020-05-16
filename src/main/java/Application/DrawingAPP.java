@@ -20,16 +20,21 @@ DrawingAPP;
 * @param args arguments.
 */
 public void run(final String[] args) {
-    UserOutput display = new Afficherr();
+  
+    UserOutput aff = new Afficherr();
     UserInput input = new Scan();
     DrawingTUI drawing = new DrawingTUI();
-    String message = "Welcome to the drawing application, type a command";
-    display.showMessage(message);
+    
+    String message = "Tapez une commande";
+    aff.showMessage(message);
     String userString = "";
     int count = 0;
+    
     while (true) {
+      
         userString = input.readValue();
         Command command = drawing.nextCommand(userString);
+        
         if (command != null) {
     
             String commandString = command.getClass().getSimpleName();
@@ -37,95 +42,97 @@ public void run(final String[] args) {
                 command.execute();
                 
             } catch (NoSuchElementException e) { 
-                System.out.println("here");
-                message = "Forme doesn't exist";
-                display.showMessage(message);
+                message = "CEtte forme n'est pas permise ou n'existe pas";
+                aff.showMessage(message);
             }
+            
             switch(commandString.toLowerCase()) {
             case "formedeplacement":
 
-                message = "The following forme has been moved : ";
+                message = "cette forme a été déplacées : ";
                 Forme forme = drawing.getformeDeplacee().get(0);
                 message += forme.getNom() + " ";
                 
-                display.showMessage(message);
+                aff.showMessage(message);
                     
-                message = "New coordinates : ";
-                display.showMessage(message);
+                message = "ses nouvelles coordonnées : ";
+                aff.showMessage(message);
                 forme.affiche();
                 drawing.deleteformeMoved();
         
                 break;
-            case "formegroupedeplacement":
+                
+            case "formedeplacementgroupe":
 
-                message = "The following forme has been moved : ";
+                message = "ces formes ont été déplacées : ";
                 for (Forme f : drawing.getformeDeplacee()) {
                     message += f.getNom() + " ";
                 }
                 
                 
-                display.showMessage(message);
+                aff.showMessage(message);
                     
-                message = "New coordinates : ";
-                display.showMessage(message);
+                message = "nouvelles coordonnées : ";
+                aff.showMessage(message);
                 for (Forme f : drawing.getformeDeplacee()) {
                     f.affiche();
                 }
                 drawing.deleteformeMoved();
                 break;
+                
             case "showallcommand":
                 break;
-            case "formedeleteionall":
-                message = "All formes have been deleted.";
-                display.showMessage(message);
                 
+            case "deleteall":
+                message = "Tout a été supprimé";
+                aff.showMessage(message);
                 count = 0;
                 break;
-            case "showcommand":
-    
+                
+            case "showcommand"://A REMPLIR
                 break;
-            case "formedeletion":
-                message = "The following formes have been deleted ";
+                
+            case "formedelete":
+                message = "ces formes ont été supprimées ";
+                
                 for (Forme f : drawing.getformeSupprimee()) {
                     message += f.getNom() + " ";
                 }
-                display.showMessage(message);
+                aff.showMessage(message);
                 count = drawing.getforme().size();
                 drawing.deleteformeSupprimee();
                 break;
+                
             case "quit":
-                message = "You are quiting";
-                display.showMessage(message);
+                message = "FERMETURE DE L'APP";
+                aff.showMessage(message);
                 return;
+                
             case "savecommand":
-                message = "Your drawing has been saved !";
-                display.showMessage(message);
+                message = "SAVED !";
+                aff.showMessage(message);
                 break;
+                
             case "loadcommand":
-                message = "Your drawing have been loaded";
-                display.showMessage(message);
+                message = "LOADED";
+                aff.showMessage(message);
                 break;
-            default:
+                
+            default://creer une forme
                 message = drawing.getforme().get(count).getType()+" "+drawing.getforme().get(count).getNom()
                 +  " has been created.";
-                display.showMessage(message);
+                aff.showMessage(message);
                 drawing.getforme().get(count).affiche();
                 count += 1;
                 break;
             
             }
         
-            
-            
-        
-            
-        
-    
                     
 
         } else {
-            message = "Please enter a valid command";
-            display.showMessage(message);
+            message = "Rentrez une commande valide svp";
+            aff.showMessage(message);
         }
         
         
@@ -136,7 +143,6 @@ public void run(final String[] args) {
 * @param args arguments.
 */
  
-
 
 
 public static void main(final String[] args) {

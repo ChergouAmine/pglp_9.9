@@ -59,7 +59,6 @@ public class DrawingTUI {
 
       if(!rs.next())
       {
-
         statement.execute("CREATE TABLE groupe(groupeId varchar(30) primary key not null)");
 
 

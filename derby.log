@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Sat May 16 18:21:26 CEST 2020:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.3.0 - (1405108): instance a816c00e-0172-1e4a-5020-000002117708 
+on database directory /home/user/Bureau/pglp_9.9/dessindb  with class loader sun.misc.Launcher$AppClassLoader@73d16e93 
+Loaded from file:/home/user/.m2/repository/org/apache/derby/derby/10.8.3.0/derby-10.8.3.0.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_144-b01
+user.dir=/home/user/Bureau/pglp_9.9
+os.name=Linux
+os.arch=amd64
+os.version=4.12.0-1-amd64
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
