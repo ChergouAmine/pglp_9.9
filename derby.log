@@ -1,4 +1,4 @@
-Sun May 17 20:30:54 CEST 2020 Thread[main,5,main] Cleanup action starting
+Sun May 17 20:56:33 CEST 2020 Thread[main,5,main] Cleanup action starting
 java.sql.SQLException: Failed to start database 'dessindb' with class loader sun.misc.Launcher$AppClassLoader@73d16e93, see the next exception for details.
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(Unknown Source)
 	at org.apache.derby.impl.jdbc.Util.newEmbedSQLException(Unknown Source)
@@ -13,9 +13,9 @@ java.sql.SQLException: Failed to start database 'dessindb' with class loader sun
 	at java.sql.DriverManager.getConnection(DriverManager.java:664)
 	at java.sql.DriverManager.getConnection(DriverManager.java:270)
 	at DAO.Dao.connect(Dao.java:29)
-	at DAO.GroupeFormeDao.delete(GroupeFormeDao.java:217)
-	at DAO.GroupeFormeDao.delete(GroupeFormeDao.java:1)
-	at PatternCommand.DrawingTUI$SaveCommand.execute(DrawingTUI.java:298)
+	at DAO.GroupeFormeDao.find(GroupeFormeDao.java:83)
+	at DAO.GroupeFormeDao.find(GroupeFormeDao.java:15)
+	at PatternCommand.DrawingTUI$LoadCommand.execute(DrawingTUI.java:322)
 	at Application.DrawingAPP.run(DrawingAPP.java:47)
 	at Application.DrawingAPP.main(DrawingAPP.java:187)
 Caused by: java.sql.SQLException: Failed to start database 'dessindb' with class loader sun.misc.Launcher$AppClassLoader@73d16e93, see the next exception for details.
@@ -73,9 +73,9 @@ java.sql.SQLException: Another instance of Derby may have already booted the dat
 	at java.sql.DriverManager.getConnection(DriverManager.java:664)
 	at java.sql.DriverManager.getConnection(DriverManager.java:270)
 	at DAO.Dao.connect(Dao.java:29)
-	at DAO.GroupeFormeDao.delete(GroupeFormeDao.java:217)
-	at DAO.GroupeFormeDao.delete(GroupeFormeDao.java:1)
-	at PatternCommand.DrawingTUI$SaveCommand.execute(DrawingTUI.java:298)
+	at DAO.GroupeFormeDao.find(GroupeFormeDao.java:83)
+	at DAO.GroupeFormeDao.find(GroupeFormeDao.java:15)
+	at PatternCommand.DrawingTUI$LoadCommand.execute(DrawingTUI.java:322)
 	at Application.DrawingAPP.run(DrawingAPP.java:47)
 	at Application.DrawingAPP.main(DrawingAPP.java:187)
 Caused by: java.sql.SQLException: Another instance of Derby may have already booted the database /home/user/Bureau/pglp_9.9/dessindb.
@@ -130,9 +130,9 @@ java.sql.SQLException: Another instance of Derby may have already booted the dat
 	at java.sql.DriverManager.getConnection(DriverManager.java:664)
 	at java.sql.DriverManager.getConnection(DriverManager.java:270)
 	at DAO.Dao.connect(Dao.java:29)
-	at DAO.GroupeFormeDao.delete(GroupeFormeDao.java:217)
-	at DAO.GroupeFormeDao.delete(GroupeFormeDao.java:1)
-	at PatternCommand.DrawingTUI$SaveCommand.execute(DrawingTUI.java:298)
+	at DAO.GroupeFormeDao.find(GroupeFormeDao.java:83)
+	at DAO.GroupeFormeDao.find(GroupeFormeDao.java:15)
+	at PatternCommand.DrawingTUI$LoadCommand.execute(DrawingTUI.java:322)
 	at Application.DrawingAPP.run(DrawingAPP.java:47)
 	at Application.DrawingAPP.main(DrawingAPP.java:187)
 Caused by: ERROR XSDB6: Another instance of Derby may have already booted the database /home/user/Bureau/pglp_9.9/dessindb.
@@ -208,9 +208,9 @@ ERROR XSDB6: Another instance of Derby may have already booted the database /hom
 	at java.sql.DriverManager.getConnection(DriverManager.java:664)
 	at java.sql.DriverManager.getConnection(DriverManager.java:270)
 	at DAO.Dao.connect(Dao.java:29)
-	at DAO.GroupeFormeDao.delete(GroupeFormeDao.java:217)
-	at DAO.GroupeFormeDao.delete(GroupeFormeDao.java:1)
-	at PatternCommand.DrawingTUI$SaveCommand.execute(DrawingTUI.java:298)
+	at DAO.GroupeFormeDao.find(GroupeFormeDao.java:83)
+	at DAO.GroupeFormeDao.find(GroupeFormeDao.java:15)
+	at PatternCommand.DrawingTUI$LoadCommand.execute(DrawingTUI.java:322)
 	at Application.DrawingAPP.run(DrawingAPP.java:47)
 	at Application.DrawingAPP.main(DrawingAPP.java:187)
 ============= end nested exception, level (3) ===========
