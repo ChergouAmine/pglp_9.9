@@ -1,6 +1,13 @@
 package Application;
 
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.NoSuchElementException;
+import DAO.DaoFactory;
 import InputOutput.Afficherr;
 import InputOutput.Scan;
 import InputOutput.UserInput;
@@ -9,16 +16,12 @@ import PatternCommand.Command;
 import PatternCommand.DrawingTUI;
 import forme.Afficher;
 import forme.Forme;
+import forme.GroupeForme;
 
 public enum DrawingAPP {
-/**
-*Application.
-*/
+
 DrawingAPP;
-/**
-*
-* @param args arguments.
-*/
+  
 public void run(final String[] args) {
   
     UserOutput aff = new Afficherr();
@@ -35,9 +38,11 @@ public void run(final String[] args) {
         userString = input.readValue();
         Command command = drawing.nextCommand(userString);
         
+        
         if (command != null) {
     
             String commandString = command.getClass().getSimpleName();
+            
             try {
                 command.execute();
                 
@@ -47,9 +52,9 @@ public void run(final String[] args) {
             }
             
             switch(commandString.toLowerCase()) {
-            case "formedeplacement":
+            case "deplacementforme":
 
-                message = "cette forme a été déplacées : ";
+                message = "cette forme a été déplacée : ";
                 Forme forme = drawing.getformeDeplacee().get(0);
                 message += forme.getNom() + " ";
                 
@@ -62,7 +67,7 @@ public void run(final String[] args) {
         
                 break;
                 
-            case "formedeplacementgroupe":
+            case "deplacementformegroupe":
 
                 message = "ces formes ont été déplacées : ";
                 for (Forme f : drawing.getformeDeplacee()) {
@@ -83,7 +88,7 @@ public void run(final String[] args) {
             case "showallcommand":
                 break;
                 
-            case "deleteall":
+            case "allformedelete":
                 message = "Tout a été supprimé";
                 aff.showMessage(message);
                 count = 0;
@@ -141,12 +146,46 @@ public void run(final String[] args) {
 /**
 *
 * @param args arguments.
+ * @throws ClassNotFoundException 
+ * @throws SQLException 
 */
  
 
 
-public static void main(final String[] args) {
+public static void main(final String[] args) throws ClassNotFoundException, SQLException {
+  
+  
+ /* Connection connect = null;
+  
+  Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
+  connect = DriverManager.getConnection("jdbc:derby:dessindb;create=true");
+ 
+
+     connect.createStatement().execute("CREATE TABLE groupe(groupeId varchar(30) primary key not null)");
+
+      
+      connect.createStatement().execute("CREATE TABLE Carre(nom varchar(20) PRIMARY KEY NOT NULL, cote int, x int, y int, "   
+          + "groupeId varchar(30) references groupe(groupeId))");
+
+
+      connect.createStatement().execute("CREATE TABLE Cercle(nom varchar(20) PRIMARY KEY NOT NULL, rayon int, x int, y int, "   
+          + "groupeId varchar(30) references groupe(groupeId))");
+
+
+      connect.createStatement().execute("CREATE TABLE Rectangle(nom varchar(20) PRIMARY KEY NOT NULL, h int, w int, x int, y int, "   
+          + "groupeId varchar(30) references groupe(groupeId))");
+
+
+      connect.createStatement().execute("CREATE TABLE Triangle(nom varchar(20) PRIMARY KEY NOT NULL, cote int, ax int, ay int, bx int, \"by\" int, cx int,  cy int,"   
+          + "groupeId varchar(30) references groupe(groupeId))");
+
+ connect.close();
+    */
+   
+  
+  
        DrawingAPP.run(args);
+      
 }
 
 }

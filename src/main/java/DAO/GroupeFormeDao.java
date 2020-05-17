@@ -86,7 +86,7 @@ public class GroupeFormeDao extends Dao<GroupeForme> {
     
     try {
       
-      select = connect.prepareStatement("select * from Groupe where groupeId = (?)");
+      select = connect.prepareStatement("select * from groupe where groupeId = (?)");
       select.setString(1, id);
       select.execute();
      
@@ -226,7 +226,7 @@ public class GroupeFormeDao extends Dao<GroupeForme> {
       }
       
       String groupeId = g.getNom();
-      delete = connect.prepareStatement("Delete from Groupe where groupeId = (?)");
+      delete = this.connect.prepareStatement("Delete from groupe where groupeId = (?)");
       
       delete.setString(1, groupeId);
       delete.execute();

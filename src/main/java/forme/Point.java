@@ -11,6 +11,7 @@ public class Point {
   }
   
   public void move (int a, int b) {
+    System.out.println(a+" "+b);
       this.x = x+a;
       this.y = y+b;
   }

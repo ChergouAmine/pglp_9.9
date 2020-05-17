@@ -1,6 +1,5 @@
 package PatternCommand;
 
-import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
@@ -35,55 +34,14 @@ public class DrawingTUI {
 
   private List<Forme> formeSupprimee;
 
-  private Connection connect = null;
-  private PreparedStatement statement;
+
 
   private static int goupeId = 0;
 
 
   public DrawingTUI() {
 
-    try {
-      statement=null;
-
-      DaoFactory daoFac = new DaoFactory();
-
-      DAO.Dao<GroupeForme> daoG = daoFac.createGroupeDao();
-
-      daoG.connect();   
-      connect = daoG.connect; 
-
-      DatabaseMetaData dbmd = connect.getMetaData();
-
-      ResultSet rs = dbmd.getTables(null, "APP", "GROUPE", null);
-
-      if(!rs.next())
-      {
-        statement.execute("CREATE TABLE groupe(groupeId varchar(30) primary key not null)");
-
-
-        statement.execute("CREATE TABLE Carre(nom varchar(20) PRIMARY KEY NOT NULL, cote int, x int, y int, "   
-            + "groupeId varchar(30) references groupe(groupeId))");
-
-
-        statement.execute("CREATE TABLE Cercle(nom varchar(20) PRIMARY KEY NOT NULL, rayon int, x int, y int, "   
-            + "groupeId varchar(30) references groupe(groupeId))");
-
-
-        statement.execute("CREATE TABLE Rectangle(nom varchar(20) PRIMARY KEY NOT NULL, h int, w int, x int, y int, "   
-            + "groupeId varchar(30) references groupe(groupeId))");
-
-
-        statement.execute("CREATE TABLE Triangle(nom varchar(20) PRIMARY KEY NOT NULL, cote int, ax int, ay int, bx int, \"by\" int, cx int,  cy int,"   
-            + "groupeId varchar(30) references groupe(groupeId))");
-
-        statement.close(); 
-      }
-      connect.close();
-    } catch (SQLException e) {
-
-      e.printStackTrace();
-    }
+    
 
     commands = new HashMap<String, Command>();
 
@@ -266,6 +224,7 @@ public class DrawingTUI {
   private DeplacementForme getMouvementCommand(String[] result) {
     
     try {
+      
       AbstractForme f = getFormeWithName(forme, result[1]);
       
       DeplacementForme command = (DeplacementForme) this.commands.get("move");
@@ -430,6 +389,28 @@ public class DrawingTUI {
     return command;
   }
   
+  
+
+  
+  private ShowAllCommand getShowAllCommand(String[] result) {
+    GroupeForme g = new GroupeForme("aucun");
+    
+    if (result.length == 1) {
+      return null;
+    }
+
+    for(int i = 1; i < result.length; i++) {
+      Forme f = getFormeWithName(this.forme, result[i]);
+      if (f == null) {
+        return null;
+      }else {
+        g.addForme(f);
+      }
+    }
+
+    ShowAllCommand command = (ShowAllCommand) this.commands.get("showall");
+    return command;
+  }
 
   
   private Command getSaveCommand(String[] result) {
@@ -458,11 +439,19 @@ public class DrawingTUI {
   private static class Quit implements Command {
 
     public void execute() {
-    //A COMPLETER
+      System.exit(0);
       return;
     }
 
   }
+  
+  private Quit getQuit(String[] result) {
+    
+    Quit command = (Quit) this.commands.get("quit");
+    return command;
+      
+    }
+    
 
 
 
@@ -511,7 +500,19 @@ public class DrawingTUI {
     command.setForme(listForme);
     return command;
   }
+
   
+private AllFormeDelete getAllDeleteCommand(String[] result) {
+    
+  AllFormeDelete command = (AllFormeDelete) this.commands.get("deleteall");
+
+    List<Forme> listForme = new ArrayList<Forme>();
+    for(int i = 1; i < result.length;i++) {
+      listForme.add(getFormeWithName(this.forme, result[i]));
+      formeSupprimee = new ArrayList<Forme>(listForme);
+    }
+    return command;
+  }
   
   public List<Forme> getforme(){
     return this.forme;
@@ -540,9 +541,10 @@ public class DrawingTUI {
 
 public Command nextCommand(String userText) {
     
-    userText = userText.replaceAll("[=)(,]*-", " ");
+    userText = userText.replaceAll("[ = ) ( , ]", " ");
     String[] result = userText.split("\\s+");
     Command command = null;
+    //System.out.println(userText);
 
 
     switch(result[0].toLowerCase()) {
@@ -570,6 +572,7 @@ public Command nextCommand(String userText) {
         
       case "deleteall":
         //A COMPLETER
+        command = getAllDeleteCommand(result);
         break;
         
       case "show":
@@ -581,12 +584,16 @@ public Command nextCommand(String userText) {
         
         
       case "showall":
+        if (result.length == 1) {
+          return null;
+        }
+        command = getShowAllCommand(result);
       //A COMPLETER
         break;
         
         
       case "quit":
-      //A COMPLETER
+        command = getQuit(result);
         break;
       default:
         command = getCreationCommand(result);
