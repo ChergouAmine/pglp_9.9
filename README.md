@@ -6,13 +6,13 @@
 
 ## Mode d'utilisation 
 création : c1=((1,1),50) OU BIEN vu que je vais un replaceall des caractères spéciaux on peut directement écrire c1 cercle 1 1 50
-déplacement : move c1 1 1
-déplacement groupé : moveall c1 c2 c3 5 5
-affichage : show c1
-affichage all : show c1 c2 c3
-suppression : delete c1
-suppression all : deleteall
-quitter : quit
-save : save c1
-load : load c1
+// déplacement : move c1 1 1
+// déplacement groupé : moveall c1 c2 c3 5 5
+// affichage : show c1
+// affichage all : show c1 c2 c3
+// suppression : delete c1
+// suppression all : deleteall
+// quitter : quit
+// save : save c1
+// load : load c1
 
